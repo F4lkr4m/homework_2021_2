@@ -10,5 +10,12 @@ const plain = arrays => {
     if (!Array.isArray(arrays)) {
         return undefined;
     }
-    return [].concat(...arrays.flat(Infinity));
+
+    let resultArray = [];
+
+    arrays.forEach(function(item) {
+        Array.isArray(item) ? Array.prototype.push.apply(resultArray, plain(item)) : resultArray.push(item);
+    });
+
+    return resultArray;
 }

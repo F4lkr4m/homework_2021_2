@@ -11,7 +11,7 @@ const plain = arrays => {
         return undefined;
     }
 
-    let resultArray = [];
+    const resultArray = [];
 
     arrays.forEach((item) => {
         Array.isArray(item) ? Array.prototype.push.apply(resultArray, plain(item)) : resultArray.push(item);

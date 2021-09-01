@@ -13,7 +13,7 @@ const plain = arrays => {
 
     let resultArray = [];
 
-    arrays.forEach(function(item) {
+    arrays.forEach((item) => {
         Array.isArray(item) ? Array.prototype.push.apply(resultArray, plain(item)) : resultArray.push(item);
     });
 

@@ -3,19 +3,20 @@
 /**
  * Flattening objects in one array
  *
- * @param {array} arrays with inner arrays
- * @returns {array | undefined} flattened array or if input is wrong returns undefined
+ * @param {*[]} arrays - Array with inner Arrays
+ * @returns {*[] | undefined} flattened array or if input is wrong returns undefined
  */
-const plain = arrays => {
+const plain = (arrays) => {
     if (!Array.isArray(arrays)) {
         return undefined;
     }
 
     const resultArray = [];
 
-    arrays.forEach((item) => {
-        Array.isArray(item) ? Array.prototype.push.apply(resultArray, plain(item)) : resultArray.push(item);
-    });
+    while (arrays.length) {
+        const value = arrays.pop();
+        Array.isArray(value) ? arrays.push(...value) : resultArray.push(value);
+    }
 
-    return resultArray;
+    return resultArray.reverse();
 }

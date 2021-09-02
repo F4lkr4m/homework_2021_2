@@ -35,6 +35,7 @@ QUnit.module('Тестируем функцию plain', function () {
 
 	QUnit.test('Работает с элементами разных типов', function (assert) {
 		assert.deepEqual(plain([ [ 'abcde' ], [ [ 'f' ], [ null, false ], [ NaN, NaN ], NaN ], -Infinity ]), [ 'abcde', 'f', null, false, NaN, NaN, NaN, -Infinity ]);
+		assert.deepEqual(plain([null, undefined]), [null, undefined]);
 	});
 
 	QUnit.test('Работает с объектами в массивах', function (assert) {
@@ -47,5 +48,7 @@ QUnit.module('Тестируем функцию plain', function () {
 		assert.deepEqual(plain({}), undefined);
 		assert.deepEqual(plain('Hello there!'), undefined);
 		assert.deepEqual(plain(123), undefined);
+		assert.deepEqual(plain(null), undefined);
+		assert.deepEqual(plain(undefined), undefined);
 	});
 });
